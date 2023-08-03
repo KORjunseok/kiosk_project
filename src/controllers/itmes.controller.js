@@ -1,50 +1,23 @@
-// import ItemsService from '../services/items.service.js';
+import ItemsService from '../services/items.service.js';
 
-// class ItemsController {
-//   itemsService = new ItemsService();
+class ItemsController {
+  itemsService = new ItemsService();
 
-//   makeItem = async (req, res) => {
-//     const { name, price, type, option_id } = req.body;
+  makeItem = async (req, res) => {
+    try {
+    const { name, price} = req.body;
+    const makeItem = await this.itemsService.createItem(
+      name,
+      price,
+    );
+    // console.log(makeItem)
 
-//     const { status, message } = await this.itemsService.makeItem(
-//       name,
-//       price,
-//       type,
-//       option_id,
-//     );
-//     return res.status(status).json({ message });
-//   };
-//   getItemList = async (req, res) => {
-//     const { category } = req.query;
-//     const { status, message, list } = await this.itemsService.getItemList(
-//       category,
-//     );
-//     return res.status(status).json({ message, list });
-//   };
-//   removeItem = async (req, res) => {
-//     const { id } = req.params;
-//     const { status, message } = await this.itemsService.removeItem(id);
-//     return res.status(status).json({ message });
-//   };
-//   answerRemoveItem = async (req, res) => {
-//     const { id } = req.params;
-//     const { answer } = req.body;
-//     const { status, message } = await this.itemsService.answerRemoveItem(
-//       id,
-//       answer,
-//     );
-//     return res.status(status).json({ message });
-//   };
-//   editItem = async (req, res) => {
-//     const { id } = req.params;
-//     const { name, price } = req.body;
-//     const { status, message } = await this.itemsService.editItem(
-//       id,
-//       name,
-//       price,
-//     );
-//     return res.status(status).json({ message });
-//   };
-// }
+    return res.status(201).json("상품 추가 성공적입니다." );
+  } catch (error) {
+    console.error('상품 추가 에러 :', error)
+    res.status(400).json({ errorMessage: '상품 추가 실패했습니다.' });
+  }
+  };
+}
 
-// export default ItemsController;
+export default ItemsController;

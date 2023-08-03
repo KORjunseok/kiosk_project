@@ -9,7 +9,14 @@ Items.init(
     name: DataTypes.STRING,
     price: DataTypes.BIGINT,
     amount: { type: DataTypes.BIGINT, defaultValue: 0 },
-    option: DataTypes.BIGINT,
+    createdAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     sequelize,

@@ -1,6 +1,5 @@
 import validator from 'express-validator';
 const { body, validationResult } = validator;
-// import { body, validationResult } from validator;
 
 //단일 요청에 유효성 검사
 const validate = function (req, res, next) {
@@ -38,22 +37,14 @@ const defaultValidate = {
       ),
       validate,
   ],
-  // updateUser: [
-  //   body('nickname').trim().notEmpty().withMessage('닉네임을 입력해주세요.'),
-  //   body('password')
-  //     .custom((value, { req }) => {
-  //       if (value != req.body.confirm) {
-  //         throw new Error('확인 비밀번호와 일치하지 않습니다.');
-  //       } else {
-  //         return value;
-  //       }
-  //     })
-  //     .matches(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{4,12}$/)
-  //     .withMessage(
-  //       '숫자와 문자, 기호를 포함한 4~12자리 비밀번호를 입력해주세요.'
-  //     ),
-  //   validate,
-  // ],
+  // 상품 추가 
+  createItem : [
+    body('name').trim().notEmpty().withMessage('상품 이름을 입력해 주세요.').matches(/^[^0-9]+$/).withMessage('문자열 타입을 지정해주세요.'),
+    body('price').trim().notEmpty().withMessage('상품 가격을 입력해 주세요.').isNumeric().withMessage('숫자열 타입을 지정해주세요.'),
+    validate,
+  ],
+
+
 };
 
 export default defaultValidate;

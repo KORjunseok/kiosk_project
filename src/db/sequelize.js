@@ -10,6 +10,7 @@ const sequelize = new Sequelize({
   database: env.database,
   host: env.mysqlhost,
   dialect: env.dialect,
+  logging: false // 배포 환경에서는 쿼리 로그를 비활성화 한다.
 });
 
 export default sequelize;

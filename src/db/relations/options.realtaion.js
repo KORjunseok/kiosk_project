@@ -4,6 +4,6 @@ import Order_Items from '../models/order_items.js';
 export default () => {
   Options.hasMany(Order_Items, {
     sourceKey: 'id',
-    foreignKey: 'option_id',
+    foreignKey: 'options_id',
   });
 };

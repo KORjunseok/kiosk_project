@@ -26,7 +26,7 @@ export class Server {
   };
 
   sequelizeSync = () => {
-    return sequelize.sync();
+    return sequelize.sync({force : true});
   };
 
   runServer = async () => {

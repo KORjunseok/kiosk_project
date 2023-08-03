@@ -7,7 +7,7 @@ Order_Items.init(
   {
     id: { type: DataTypes.BIGINT, autoIncrement: true, primaryKey: true },
     items_id: DataTypes.BIGINT,
-    order_customer_id: DataTypes.BIGINT,
+    order_customers_id: DataTypes.BIGINT,
     amount: { type: DataTypes.BIGINT, defaultValue: 0 },
     option_id: DataTypes.BIGINT,
     price: DataTypes.BIGINT,

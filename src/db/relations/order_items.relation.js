@@ -10,10 +10,10 @@ export default () => {
   }),
     Order_Items.belongsTo(Order_Customers, {
       targetKey: 'id',
-      foreignKey: 'order_customer_id',
+      foreignKey: 'order_customers_id',
     }),
     Order_Items.belongsTo(Options, {
       targetKey: 'id',
-      foreignKey: 'option_id',
+      foreignKey: 'options_id',
     });
 };

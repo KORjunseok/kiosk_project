@@ -6,7 +6,10 @@ class Users extends Model {}
 Users.init(
   {
     id: { type: DataTypes.BIGINT, autoIncrement: true, primaryKey: true },
-    nickname: DataTypes.STRING,
+    nickname: { 
+      type : DataTypes.STRING, 
+      unique: true, 
+    },
     password: DataTypes.STRING,
     createdAt: {
       type: DataTypes.DATE,

@@ -5,8 +5,6 @@ import jwt from 'jsonwebtoken';
 class UsersService {
   usersRepository = new UsersRepository();
 
-
-
   // 회원가입
   createUser = async (nickname, password) => {
     // bcrypt 패스워드 설정
@@ -23,7 +21,7 @@ class UsersService {
     const user = await this.usersRepository.findByEmail(nickname);
     const passwordsMatch = await bcrypt.compare(password, user.password);
     if (!nickname || !passwordsMatch ) {
-      throw new Error('로그인222에 실패하였습니다.');
+      throw new Error('로그인에 실패하였습니다.');
     }
     const token = jwt.sign(
       {

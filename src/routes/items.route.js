@@ -7,9 +7,18 @@ const itemsController = new ItemsController();
 
 //상품 추가 
 router.post('/items', validator.createItem, itemsController.makeItem);
-// router.get('/items', itemsController.getItemList);
-// router.delete('/items/:id', itemsController.removeItem);
-// router.delete('/response/items/:id', itemsController.answerRemoveItem);
-// router.patch('/items/:id', itemsController.editItem);
+
+// 상품 조회
+router.get('/items', itemsController.getItemList);
+
+// 상품 삭제 ... 어려워 보인다. 수정 먼저 하자..
+router.delete('/items/:id', itemsController.removeItem);
+
+// 상품 수정
+router.patch('/items/:id', itemsController.modifyItem);
+
+// 상품 수정 (대답 여부 API)
+router.delete('/response/items/:id', itemsController.answerRemoveItem);
+
 
 export default router;

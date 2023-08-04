@@ -1,9 +1,9 @@
 import express from 'express';
 import usersRouter from './routes/users.route.js';
 import itemsRouter from './routes/items.route.js';
-import order_itemsRouter from './routes/order_items.route.js';
-import receiptsRouter from './routes/receipts.route.js';
-import optionsRouter from './routes/options.route.js';
+// import order_itemsRouter from './routes/order_items.route.js';
+// import receiptsRouter from './routes/receipts.route.js';
+// import optionsRouter from './routes/options.route.js';
 
 export class ExpressApp {
   app = express();
@@ -18,7 +18,7 @@ export class ExpressApp {
   setAppRouter = () => {
     this.app.use(
       '/api',
-      [usersRouter, itemsRouter, order_itemsRouter, receiptsRouter, optionsRouter],
+      [usersRouter, itemsRouter],
       (error, request, response, next) => {
         response.status(400).json({
           success: false,

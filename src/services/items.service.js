@@ -31,8 +31,7 @@ class ItemsService {
   modifyItem = async (id, name, price) => {
     const modifyItem = await this.itemsRepository.modify(id, name, price);
     const findid = await this.itemsRepository.findid(id);
-    console.log("확인용 콘솔 :", modifyItem)
-    // console.log("서비스스스스스 :", modifyItem)console.log("서비스스스스스 :", modifyItem)
+
     if (!findid) {
       return {
         message: '상품 아이디를 확인해 주세요.',
@@ -51,21 +50,21 @@ class ItemsService {
     }
     return {
       message: '상품이 성공적으로 수정되었습니다.',
-    }
+    };
   };
 
   // 상품 삭제 (수량 확인에 대한 API)
-  removeItem = async (id ) => {
+  removeItem = async id => {
     const findid = await this.itemsRepository.findid(id);
     const checkItem = await this.itemsRepository.checkItem(id);
     // console.log(findid)
     if (!findid) {
-      return  {
+      return {
         message: '상품 아이디를 확인해 주세요.',
       };
     }
     if (checkItem.amount > 0) {
-      return  {
+      return {
         message: '현재 수량이 남아있습니다. 삭제하시겠습니까?',
       };
     }
@@ -74,29 +73,29 @@ class ItemsService {
       if (removeItem) {
         return {
           message: '상품이 성공적으로 삭제되었습니다.',
-        }
+        };
       }
     }
-  }
-  // 수량 존재 시 대답 여부에 따른 삭제 or 유지 
+  };
+  // 수량 존재 시 대답 여부에 따른 삭제 or 유지
   answerRemoveItem = async (id, answer) => {
     const findid = await this.itemsRepository.checkItem(id);
-    if(!findid) {
-      return  {
-        message: '상품 아이디를 확인해 주세요.',
-      }};
-  //node-cache를 이용한 방법 
-  const removeid = myCache.get(`removeitem${id}`);
-  if (answer === '예' && removeid === id ) {
-    const removeItem = await this.itemsRepository.removeItem(id);
-    if (removeItem) {
+    if (!findid) {
       return {
-        message: '삭제가 완료 되었습니다.',
+        message: '상품 아이디를 확인해 주세요.',
+      };
+    }
+    //node-cache를 이용한 방법
+    const removeid = myCache.get(`removeitem${id}`);
+    if (answer === '예' && removeid === id) {
+      const removeItem = await this.itemsRepository.removeItem(id);
+      if (removeItem) {
+        return {
+          message: '삭제가 완료 되었습니다.',
+        };
       }
     }
-  } 
-  }
-
+  };
 }
 
 export default ItemsService;

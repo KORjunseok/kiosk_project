@@ -11,7 +11,7 @@ class UsersService {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await this.usersRepository.create({
       nickname,
-      password: hashedPassword
+      password: hashedPassword,
     });
     return user;
   };
@@ -20,7 +20,7 @@ class UsersService {
   loginUser = async (nickname, password) => {
     const user = await this.usersRepository.findByEmail(nickname);
     const passwordsMatch = await bcrypt.compare(password, user.password);
-    if (!nickname || !passwordsMatch ) {
+    if (!nickname || !passwordsMatch) {
       throw new Error('로그인에 실패하였습니다.');
     }
     const token = jwt.sign(
@@ -30,7 +30,7 @@ class UsersService {
       process.env.JWT_SECRET,
       {
         expiresIn: '1h',
-      }
+      },
     );
     return token;
   };

@@ -8,7 +8,6 @@ class UsersRepository {
   async findByEmail(nickname) {
     return Users.findOne({ where: { nickname } });
   }
-
 }
 
 export default UsersRepository;

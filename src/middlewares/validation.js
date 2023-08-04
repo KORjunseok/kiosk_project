@@ -18,11 +18,13 @@ const validate = function (req, res, next) {
   }
 };
 
-
 // 회원가입 설정
 const defaultValidate = {
   createUser: [
-    body('nickname').trim().notEmpty().withMessage('미입력 항목이 있습니다. 입력한 후 제출해 주세요.'),
+    body('nickname')
+      .trim()
+      .notEmpty()
+      .withMessage('미입력 항목이 있습니다. 입력한 후 제출해 주세요.'),
     body('password')
       .custom((value, { req }) => {
         if (value != req.body.confirm) {
@@ -33,18 +35,26 @@ const defaultValidate = {
       })
       .matches(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{4,12}$/)
       .withMessage(
-        '비밀번호는 최소 4자 이상 최대 12자로 숫자, 문자, 특수문자가 필요합니다.'
+        '비밀번호는 최소 4자 이상 최대 12자로 숫자, 문자, 특수문자가 필요합니다.',
       ),
-      validate,
-  ],
-  // 상품 추가 
-  createItem : [
-    body('name').trim().notEmpty().withMessage('상품 이름을 입력해 주세요.').matches(/^[^0-9]+$/).withMessage('문자열 타입을 지정해주세요.'),
-    body('price').trim().notEmpty().withMessage('상품 가격을 입력해 주세요.').isNumeric().withMessage('숫자열 타입을 지정해주세요.'),
     validate,
   ],
-
-
+  // 상품 추가
+  createItem: [
+    body('name')
+      .trim()
+      .notEmpty()
+      .withMessage('상품 이름을 입력해 주세요.')
+      .matches(/^[^0-9]+$/)
+      .withMessage('문자열 타입을 지정해주세요.'),
+    body('price')
+      .trim()
+      .notEmpty()
+      .withMessage('상품 가격을 입력해 주세요.')
+      .isNumeric()
+      .withMessage('숫자열 타입을 지정해주세요.'),
+    validate,
+  ],
 };
 
 export default defaultValidate;

@@ -1,10 +1,10 @@
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 import Http from 'http';
 import { ExpressApp } from './app.js';
 import sequelize from './db/sequelize.js';
 import CacheInit from './cacheinit.js';
 import Env from '../env.js';
-import { Order_Customers } from './db/index.js';
+// import { Order_Customers } from './db/index.js';
 
 export class Server {
   env = new Env();
